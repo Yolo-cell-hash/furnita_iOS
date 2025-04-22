@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:furnita_ios/utils/randomize.dart';
 import 'package:furnita_ios/utils/encryption.dart';
 import 'dart:typed_data';
+import 'package:intl/intl.dart';
 
 class ReusableCard extends StatefulWidget {
   dynamic bleName, bleAddress, bleRssi, bleSerialNumber;
@@ -35,6 +36,7 @@ class _ReusableCardState extends State<ReusableCard> {
   bool? connectionStatus, isConnected;
   bool isLoading = false;
   dynamic statusColor = (Colors.black);
+  late String timeNow;
   String label = 'Connect';
   late String epochTime;
   Widget ButtonChild = Text(
@@ -118,14 +120,17 @@ class _ReusableCardState extends State<ReusableCard> {
                   connectionStatus = await bleUtil
                       .connectToDevice(widget.bleAddress.toString());
 
-                  // bleUtil.connectToStoredDevice();
+                  print('----------------------------------');
+                  DateTime now = DateTime.now();
+                  timeNow = (DateFormat('ddMMyyyyHHmmss').format(now))
+                      .runes
+                      .map((e) => e.toRadixString(16).toUpperCase())
+                      .join();
+                  print('Time Now: $timeNow');
+                  print('----------------------------------');
 
-                  epochTime = giveEpochTime();
-                  print('Epoch Time: $epochTime');
-                  print('----------------------------------');
-                  unlockCmd += epochTime;
-                  print('Unlock Command with epcoh: $unlockCmd');
-                  print('----------------------------------');
+                  unlockCmd += timeNow;
+                  unlockCmd += "32";
 
                   List<int> unlockCmdHex = [];
                   for (int i = 0; i < unlockCmd.length; i += 2) {
@@ -149,7 +154,7 @@ class _ReusableCardState extends State<ReusableCard> {
 
                   unlockCmd += crc16;
                   unlockCmd += "23";
-                  print('Unlock Command with CRC: $unlockCmd');
+                  print('Unlock Command in Hex: $unlockCmdHex');
                   print('----------------------------------');
 
                   Uint8List bytes = Uint8List.fromList([

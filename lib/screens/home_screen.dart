@@ -20,17 +20,14 @@ class _HomeScreenState extends State<HomeScreen> {
   BleUtil bleUtil = BleUtil();
   SetIconForButton setIconForButton = SetIconForButton();
   bool state = true;
-  String mountedLock = "black lock demo";
-  String tableTopLock = "PCB_NoSpeaker";
+  String mountedLock = "00000202";
   IvJump ivJump = IvJump();
   late String UID;
   late String UID_first, UID_second, UID_third, UID_fourth;
   dynamic UID_first_int, UID_second_int, UID_third_int, UID_fourth_int;
 
-  dynamic unlockCmd =
-      "2A430B254753443164656D6F6C6F303737374C4C3450493152504650594A48434E00000000";
-  // dynamic unlockCmd =
-  //     "2A430B254753443164656D6F6C6F303738373053454F35554C365A54395043575600000000";
+  String unlockCmd =
+      "2A431B50653431313033353132333435363740533030303030303131353131313830343230323531323030303031383034323032363131353930303131313131313136344146";
   bool isClicked = false;
   int? clickedIndex;
   double verticalSpacefromBottom = 60.0;
@@ -210,62 +207,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               print('New Password is - $newPass');
                               print("---------------------------------");
 
-                              // dynamic timeGMT = (DateTime.now()
-                              //             .toUtc()
-                              //             .millisecondsSinceEpoch /
-                              //         1000)
-                              //     .round()
-                              //     .toRadixString(16)
-                              //     .toUpperCase();
-                              //
-                              // print('EPOCH TIME IS - $timeGMT');
-                              // print("---------------------------------");
-                              //
-                              // padding = padding + timeGMT;
-
                               updateProvider(newIV, newPass, unlockCmd);
-
-                              // Provider.of<IvPasswordProvider>(context,
-                              //         listen: false)
-                              //     .updateUnlockCmd(unlockCmd);
 
                               print('Unlock Command is - $unlockCmd');
                               print("---------------------------------");
-
-                              //
-                              // List<int> unlockCmdHex = [];
-                              // for (int i = 0; i < unlockCmd.length; i += 2) {
-                              //   unlockCmdHex.add(int.parse(
-                              //       unlockCmd.substring(i, i + 2),
-                              //       radix: 16));
-                              // }
-                              //
-                              // print(
-                              //     'Unlock Command in Hex without CRC is - $unlockCmdHex');
-                              // print("---------------------------------");
-                              //
-                              // String crc16 = Crc16Xmodem()
-                              //     .convert(Uint8List.fromList(unlockCmdHex))
-                              //     .toRadixString(16)
-                              //     .toUpperCase();
-                              //
-                              // if (crc16.length < 4) {
-                              //   crc16 = crc16.padLeft(4, '0');
-                              // }
-                              //
-                              // print('CRC16 is - $crc16');
-                              // print("---------------------------------");
-                              //
-                              // unlockCmd += crc16;
-                              // print(
-                              //     'Unlock Command with CRC is - ${unlockCmd + "23"}');
-                              // print("---------------------------------");
-                              //
-                              // String encodedCommand =
-                              //     utf8.encode(unlockCmd).toString();
-                              //
-                              // print('Encoded Command is - $encodedCommand');
-                              // print("---------------------------------");
 
                               String asciiString = String.fromCharCodes(
                                   List.generate(

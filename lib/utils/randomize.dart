@@ -2,8 +2,8 @@ import 'dart:typed_data';
 import 'dart:convert';
 
 class IvJump {
-  String password = "Qn5qd7i80vQvM0KFQLy0Qn5qd7i80Fco";
-  String iv = "0vQvM0KFQLy0Qn5q";
+  String password = "Oq7680vQvM0zc8m77m0KFQLy0vQvM0zc";
+  String iv = "vM0zc8m77m0KFQLy";
 
   String replaceIVWithUID(String iv, String uid) {
     if (uid.length < 8) {
@@ -31,23 +31,4 @@ class IvJump {
     print('## Updated password: $updatedPassword');
     return updatedPassword;
   }
-
-// String? encrypt(Uint8List text, String key, String iv) {
-//   try {
-//     final keyBytes = encrypt1.Key.fromUtf8(key);
-//     final ivBytes = encrypt1.IV.fromBase64(base64Encode(iv.codeUnits));
-//     final encrypter = encrypt1.Encrypter(
-//         encrypt1.AES(keyBytes, mode: encrypt1.AESMode.cbc));
-//
-//     // Encrypt the data
-//     final encrypted = encrypter.encryptBytes(text, iv: ivBytes);
-//
-//     // Return Base64 encoded encrypted data
-//     return encrypted.base64;
-//   } catch (e) {
-//     // Similar to Kotlin's error handling, return null on encryption failure
-//     print('Encryption error: $e');
-//     return null;
-//   }
-// }
 }

@@ -7,8 +7,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:geolocator/geolocator.dart';
 
 class BleUtil {
-  final String mountedLock = "black lock demo";
-  final String tableTopLock = "PCB_NoSpeaker";
+  final String mountedLock = "00000202";
   final _foundDevices = <String, ScanResult>{}; // Store devices
   final Map<String, BluetoothDevice> _cachedDevices = {};
   final Map<String, BluetoothDevice> _connectedDevicesCache =
